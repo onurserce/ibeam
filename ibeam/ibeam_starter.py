@@ -185,6 +185,7 @@ if __name__ == '__main__':
 
             if shutdown:
                 _LOGGER.warning('Shutting IBeam down due to critical error.')
+                client.shutdown()
             else:
                 client.maintain()
         else:

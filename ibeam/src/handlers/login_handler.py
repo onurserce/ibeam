@@ -513,7 +513,9 @@ class LoginHandler():
         except TimeoutException as e:
             try:
                 self.handle_timeout_exception(e, targets, driver, website_version, self.route_auth, self.base_url, self.outputs_dir)
-            except AttemptException:
+            except AttemptException as e2:
+                if e2.cause == 'shutdown':
+                    return False, True
                 raise
             success = False
         except Exception as e:
